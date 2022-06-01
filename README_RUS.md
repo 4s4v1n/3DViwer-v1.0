@@ -1,6 +1,6 @@
 # 3DViewer v1.0
 
-![logo](./images/3DviewerLogo.png)
+![logo](./src/images/3DviewerLogo.png)
 
 ## Содержание
 
@@ -11,7 +11,7 @@
 Чтобы отобразить объект в приложении октройте файл при комощи кнопки `open file`, либо клавишей `O` на клавиатуре.
 После выбора файла в диалоговом окне, он отобразится на экране, а также будут выведены значения колличества вершин и линий.
 
-![open_file](./images/open_file.gif)
+![open_file](./src/images/open_file.gif)
 
 ## Афинные преобразования
 
@@ -23,8 +23,8 @@
  1) Кнопки
  2) Слайдеры
  3) Мышь (`rb` - смещение, `lb` - вращение, `wheel` - масштабирование)
- ![buttons](./images/buttons.gif)
- ![sliders](./images/sliders.gif)
+ ![buttons](./src/images/buttons.gif)
+ ![sliders](./src/images/sliders.gif)
 
 ## Настройки
 
@@ -41,7 +41,7 @@
 
 Все настройки сохраняются между сессиями программы в конфигурационный файл `settings.config`.
 
-![settings](./images/settings.png)
+![settings](./src/images/settings.png)
 
 ## Сохранение файлов
 
