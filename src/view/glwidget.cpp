@@ -6,9 +6,6 @@
 
 #include <fstream>
 
-static const double rotateSensative = 5.;
-static const double translateSensative = 50.;
-
 GlWidget::GlWidget(QWidget *parent)
     : QOpenGLWidget(parent),
       _facade(new s21::SettingsData),
@@ -60,7 +57,7 @@ void GlWidget::DrawVertexes() {
         _controller->CalcNewVec(point);
         glVertex3f(static_cast<GLfloat>(point.x()),
                    static_cast<GLfloat>(point.y()),
-                   static_cast<GLfloat>(point.z()));
+                   static_cast<GLfloat>(point.z()) + verticesShift);
       }
       glEnd();
     }
@@ -83,6 +80,7 @@ void GlWidget::ApplySettings() {
   }
 
   if (_facade) _controller->SetRenderMode(_facade->GetRenderMode());
+  this->update();
 }
 
 s21::SettingsData *GlWidget::GetSettingsDataPtr() { return _facade; }
@@ -91,7 +89,6 @@ void GlWidget::initializeGL() {
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_COLOR_MATERIAL);
   glEnable(GL_LINE_STIPPLE);
-  glClearColor(0.7, 0.0, 0.7, 1.);
   _facade->GetDataFromConfig();
   ApplySettings();
 }

@@ -15,6 +15,10 @@
 #include "../controller/controller.h"
 #include "../model/settingsmodel.h"
 
+constexpr double verticesShift = 0.01;
+constexpr double rotateSensative = 5.;
+constexpr double translateSensative = 50.;
+
 namespace Ui {
 class GlWidget;
 }

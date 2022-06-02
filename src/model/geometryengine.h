@@ -32,15 +32,11 @@ class GeometryEngine {
 
  private:
   /* drawing preferences */
-
   bool CPUMode;
 
   /* data for drawing (rotating, translating etc) */
-
   QMatrix4x4 _rotateMatrixGPU;
-
   S21Matrix _rotateMatrixCPU;
-
   QVector3D _translateVector;
 };
 

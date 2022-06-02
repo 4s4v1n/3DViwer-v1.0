@@ -10,7 +10,6 @@ namespace s21 {
 class Controller {
  public:
   Controller();
-  //    Controller(ObjParser *ptr);
   ~Controller();
   bool SetCurFile(QString fname);
 

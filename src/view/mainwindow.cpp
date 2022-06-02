@@ -6,9 +6,6 @@
 
 #include "ui/ui_mainwindow.h"
 
-static const int framesInFiveSec = 50;
-static const double sliderScalation = 10;
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
@@ -19,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent, s21::Controller *controller)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
       _settings(nullptr),
-      _timer(new QTimer(this)),
+      _timer(new QTimer),
       _gif(nullptr) {
   ui->setupUi(this);
 
@@ -32,8 +29,9 @@ MainWindow::MainWindow(QWidget *parent, s21::Controller *controller)
 }
 
 MainWindow::~MainWindow() {
-  delete ui;
   delete _timer;
+  delete _settings;
+  delete ui;
 }
 
 void MainWindow::on_openFile_clicked() {
@@ -82,7 +80,7 @@ void MainWindow::on_gifButton_clicked() {
 void MainWindow::takeFrame() {
   if (_gif->frameCount() < framesInFiveSec) {
     QImage frame = ui->glscene->grabFramebuffer();
-    _gif->addFrame(frame);
+    _gif->addFrame(frame.scaled(640, 480));
   } else {
     _timer->stop();
     ui->gifButton->setText("Record gif");
@@ -94,7 +92,7 @@ void MainWindow::takeFrame() {
     QString fileName = ui->curFile->text();
     QString currentTime =
         QDateTime::currentDateTime().toString("yyyy_MM_dd_HH_mm_ss");
-    fileName.resize(fileName.size() - 4);
+    fileName.resize(fileName.size() - extensionLenght);
     _gif->save(directoryName + fileName + "_" + currentTime + ".gif");
   }
 }
@@ -111,7 +109,7 @@ void MainWindow::savePicture() {
             this, "Open directory to save file", "/",
             QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks) +
         "/";
-    fileName.resize(fileName.size() - 4);
+    fileName.resize(fileName.size() - extensionLenght);
     if (button->text() == "Save to jpeg") {
       img.save(directoryName + fileName + "_" + currentTime + ".jpeg", "JPEG");
     } else {

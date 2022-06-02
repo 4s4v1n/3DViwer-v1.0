@@ -88,7 +88,7 @@ QColor SettingsData::GetColorFromFile(std::string source) {
 QString SettingsData::GetRenderMode() { return renderMode; }
 
 void SettingsData::WriteDataInConfig() {
-  QString path = QDir::currentPath() + "/../settings.conf";
+  QString path = pathToConfig;
   std::fstream config;
   config.open(path.toStdString(), config.out);
 
@@ -111,7 +111,7 @@ std::string SettingsData::GetColorStr(QColor color) {
 }
 
 void SettingsData::GetDataFromConfig() {
-  QString path = QDir::currentPath() + "/../settings.conf";
+  QString path = pathToConfig;
   bool exist = QFile::exists(path);
 
   std::fstream config;
@@ -181,13 +181,13 @@ void SettingsData::GetDataFromConfig() {
   } else {
     projectionType = "central";
     edgesType = "solid";
-    verticesType = "none";
+    verticesType = "circle";
     edgesThickness = 2;
     verticesSize = 5;
     renderMode = "GPU";
-    edgesColor = QColor(15, 25, 40);
-    backgroundColor = QColor(0, 0, 25);
-    verticesColor = QColor(255, 255, 255);
+    edgesColor = QColor(255, 5, 62);
+    backgroundColor = QColor(245, 245, 245);
+    verticesColor = QColor(57, 38, 255);
 
     config << "projection_type: " + projectionType.toStdString() + '\n';
     config << "edges color: " + GetColorStr(edgesColor) + '\n';

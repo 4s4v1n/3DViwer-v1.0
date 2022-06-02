@@ -10,10 +10,11 @@
 #include "qgifimage.h"
 #include "settings.h"
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
+constexpr int extensionLenght = 4;
+constexpr int framesInFiveSec = 50;
+constexpr double sliderScalation = 10;
+
+QT_BEGIN_NAMESPACE namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow {
